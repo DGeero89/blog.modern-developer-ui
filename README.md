@@ -6,4 +6,5 @@ Our team assignment was to turn a provided `.png` mock up for blog.moderndevelop
 
 ## Team Members
 David Gierman - [@DGeero89](https://github.com/DGeero89)
+
 Hannah Antonia
