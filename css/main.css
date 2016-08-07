@@ -101,8 +101,7 @@ h2 {
 }
 
 #main-content {
-	padding: 50px 0;
-	max-width: 1280px;
+	padding: 50px 60px;
 	min-height: 100vh;
 	font-family: 'Roboto', sans-serif;
 }
@@ -549,6 +548,43 @@ div.button-logo-footer{
 
 .comments-section .submit {
 	float: none;
-	height: 35px;
-	width: 164px;
+  height: 35px;
+  width: 164px;
+}
+
+.avatar {
+  position: relative;
+  margin-top: 100px;
+}
+
+.avatar-name {
+  margin-left: 120px;
+  margin-top: -95px;
+  color: #f1f1f1;
+  font-family: 'Roboto';
+}
+
+.avatar-timestamp{
+  margin-left: 210px;
+  margin-top: -15px;
+  font-family: 'Roboto';
+  color: #828081;
+  font-size: 0.9em;
+}
+
+.avatar-comments {
+  margin-left: 120px;
+  margin-top: 20px;
+  width: 640px;
+  font-family: 'Roboto';
+  line-height: 1.4em;
+  font-size: 0.9em;
+  color: #ababab;
+}
+
+.comment-reply {
+  margin-left: 120px;
+  margin-top: 20px;
+  color: #e674c9;
+  font-size: 0.8em;
 }
