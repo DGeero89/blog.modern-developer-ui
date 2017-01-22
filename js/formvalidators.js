@@ -13,11 +13,13 @@
 
       var value = input.value;
 
-      if (validator.isEmpty(commentForm.value) === false && (validator.lessWordsThan(commentForm.value, 1000)) === true) {
-        commentForm.setCustomValidity("");
+        console.log(value);
+
+      if (!validator.isEmpty(value) && validator.lessWordsThan(value, 10)) {
+        input.setCustomValidity("");
       }
       else {
-          commentForm.setCustomValidity("Please enter a valid comment, no longer than 1000 words.");
+          input.setCustomValidity("Please enter a valid comment, no longer than 1000 words.");
       }
 
     }
