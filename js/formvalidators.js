@@ -1,29 +1,56 @@
+(function(){
 /**
  * Created by hherb on 1/21/2017.
  */
-var commentForm = document.getElementById("comment-form");
+ 
+    var commentForm = document.getElementById("comment-form"),
+        commentField = commentForm.querySelector("#comment-field"),
+        emailForm = document.getElementById("email-form"),
+        emailField = emailForm.querySelector("#email"),
+        submitButtons = document.querySelectorAll('.submit');
 
-var emailForm = document.getElementbyId("email");
+    function validateCommentForm(input){
 
-function validateCommentForm(input){
-    if (validator.isEmpty(commentForm.value) === false && (validator.lessWordsThan(commentForm.value, 1000)) === true) {
+      var value = input.value;
+
+      if (validator.isEmpty(commentForm.value) === false && (validator.lessWordsThan(commentForm.value, 1000)) === true) {
         commentForm.setCustomValidity("");
-    }
-    else {
-        commentForm.setCustomValidity("Please enter a valid comment, no longer than 1000 words.");
-    }
-}
+      }
+      else {
+          commentForm.setCustomValidity("Please enter a valid comment, no longer than 1000 words.");
+      }
 
-function validateEmailForm(input){
-    if (validator.isEmailAddress(emailForm.value) === true && (validator.isEmpty(emailForm.value)) === false){
-        validateEmailForm.setCustomValidity("");
     }
-    else {
-        validateEmailForm.setCustomValidity("Please enter a valid email address.");
-        console.log("not working");
+
+    function validateEmailForm(input){
+      
+      var value = input.value;
+
+      if ( validator.isEmpty(value) ) {
+        input.setCustomValidity("Looks like you didn't enter anything. Please enter a valid email.");
+      } else if ( !validator.isEmailAddress(value) ){
+        input.setCustomValidity("Please enter a valid email. An email address consists of two strings combined by an @ symbol.");
+      }else {
+        input.setCustomValidity("");
+      }
     }
-}
 
-emailForm.addEventListener("change", validateEmailForm(this));
+    emailField.addEventListener("keyup", function() {
+      validateEmailForm(this);
+    });
 
-commentForm.addEventListener("change", validateCommentForm(this));
+    commentField.addEventListener("keyup", function(){
+      validateCommentForm(this);
+    });
+
+    commentForm.addEventListener('submit', function(e){
+      e.preventDefault();
+    });
+
+    emailForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      console.log(e.target.querySelector('input').value);
+    });
+
+
+ })();

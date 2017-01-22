@@ -12,7 +12,9 @@
 	validator.isEmailAddress = function(input){
         
         //Check if input is string, has minimum # of characters, contains an "@" and contains no spaces
-		if(typeof input !== 'string' || input.length < 5 || input.indexOf("@") === -1 || input.indexOf(" ") !== -1 ) throw "Please enter a valid input.";
+		if(typeof input !== 'string' || input.length < 5 || input.indexOf("@") === -1 || input.indexOf(" ") !== -1 ) {
+			throw "Please enter a valid input.";
+		}
 
 		//Split Input
 		var isEmail = false,

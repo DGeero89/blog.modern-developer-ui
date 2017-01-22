@@ -12,10 +12,23 @@ body {
 	font-size: 1.6em;
 }
 
+
 input:focus,
 select:focus
 {
 	outline:0;
+}
+
+input:invalid,
+textarea:invalid,
+select:invalid{
+  box-shadow: 1px 1px 1px red;
+}
+
+input:valid,
+textarea:valid,
+select:valid {
+	box-shadow: 1px 1px 1px green;
 }
 
 h2 {
