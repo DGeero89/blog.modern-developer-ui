@@ -8,12 +8,67 @@
 	var blog = {
 		siteTitle: 'Blog.Bov-Academy',
 		articleList: [],
+
+		// Return articles
 		get articles() {
 			return this.articleList;
 		},
+
+		// Add new article to article list
 		set articles(article) {
 			this.articleList.push(article);
+		},
+
+		// Add comment to article and append comment to DOM
+		addComment: function(e) {
+			var mainContent = document.getElementById('main-content'),
+					articleTitle = mainContent.querySelector('.blog-title').textContent,
+					comment = e.target.querySelector('textarea'),
+					user = "John Doe";
+
+			// Loop over article list. Find matching article, create Comment Object and push to comment array
+			for(var i = 0; i < this.articleList.length; i++){
+				if( utilities.find(this.articleList[i], articleTitle)){
+					var newComment = new Comment(this.articleList[i].comments.length+1, user, comment.value);
+					this.articleList[i].__comments = newComment;
+					appendComment(newComment);
+				}
+			}
+
+			// Reset comment value
+			comment.value = "";
 		}
+	},
+
+	// Helper object
+	Helper = {
+		get __timeStamp(){
+			var oneDay = 1000 * 60 * 60 * 24,
+			datePosted = this.date,
+			today = new Date(Date.now()).getTime(),
+			differenceInMils = (today - datePosted);
+			daysAgo = Math.round(differenceInMils/oneDay);
+
+			console.log(datePosted);
+			console.log(today);
+			console.log(differenceInMils);
+			console.log(daysAgo);
+			if(daysAgo > 1){
+				return daysAgo + " days ago";
+			} else if(daysAgo == 1){
+				return daysAgo + " day ago";
+			} else if(daysAgo <= -1) {
+				return Math.abs(daysAgo) + " days from now";
+			} else {
+				return "Today";
+			}
+
+		},
+
+		set __timeStamp(time){
+			this.date = Date.parse(new Date(time));
+		}
+
 	};
 
 	/*
@@ -22,7 +77,7 @@
 	*
 	*/
 
-	function Article(title, date, author, authImg, featureImg, content, tags) {
+	function Article(title, date, author, authImg, featureImg, content, tags, id) {
 		this.title = title || "";
 		this.date = Date.parse(date) || new Date(Date.now());
 		this.author = author || "admin";
@@ -31,59 +86,52 @@
 		this.content = content || "";
 		this.tags = tags || [];
 		this.comments = [];
-		
+		this.id = blog.articleList.length+1;
 	}
 
+	/*
+	*
+	* Comment object contructor
+	*
+	*/
+
+	function Comment(id, userId, content, userAvatar) {
+		this.id = id;
+		this.date = new Date(Date.now());
+		this.userId = userId || "Bob";
+		this.userAvatar = userAvatar || "https://s7.postimg.org/yxe2oau3f/stupid.jpg";
+		this.content = content || "Comment";
+	}
+
+	// Implement prototypical inheritance
+	Comment.prototype = Helper;
+	Article.prototype = Helper;
+
+	// Define get and set methods for Article prototype
 	Object.defineProperties(Article.prototype, {
 			
-			__content: {
-				get: function() {
-					return content;
-				},
-
-				set: function(newVal){
-					content = newVal;
-				}
+		__content: {
+			get: function() {
+				return content;
 			},
 
-			__comments: {
-				
-				get: function() {
-					return comments;
-				},
-
-				set: function(comment){
-					comments.push(comment);
-				}
-
-			},
-
-			__timeStamp: {
-
-				get: function() {
-					var oneDay = 1000 * 60 * 60 * 24,
-							datePosted = new Date(this.date),
-							today = new Date(Date.now()).getTime(),
-							differenceInMils = (today - datePosted);
-							daysAgo = Math.round(differenceInMils/oneDay);
-					
-					if(daysAgo > 1){
-						return daysAgo + " days ago";
-					} else if(daysAgo == 1){
-						return daysAgo + " day ago";
-					} else if(daysAgo <= -1) {
-						return Math.abs(daysAgo) + " days from now";
-					}
-				},
-
-				set: function(time) {
-					this.date = Date.parse(new Date(time));
-				}
-			
+			set: function(newVal){
+				content = newVal;
 			}
+		},
 
-		});
+		__comments: {
+				
+			get: function() {
+				return this.comments;
+			},
 
+			set: function(comment){
+				this.comments.push(comment);
+			}
+		}
+
+	});
 
 	/*
 	*
@@ -125,6 +173,27 @@
 
 		// Set Timestamp of post
 		mainContent.querySelector('.post-date').innerHTML = blog.articleList[0].__timeStamp;
+	}
+
+	// Function to append new comment ot the DOm
+	function appendComment(comment) {
+
+		var commentsSection = document.querySelector('.article-comments'),
+				newCommentHTML;
+		console.log(commentsSection);
+		newCommentHTML = `
+			<div class="user-comment">
+				<div class="comment-avatar">
+					<img class="avatar" src="${comment.userAvatar}">
+				</div>
+	      <p class="avatar-name"><strong>${comment.userId}</strong></p>
+	      <p class="avatar-timestamp">${comment.__timeStamp}</p>
+	      <p class="avatar-comments">"${comment.content}"</p>
+	      <p class="comment-reply">Reply</p>
+      </div>
+      `;
+
+      commentsSection.innerHTML += newCommentHTML;
 	}
 
 	blogInit();

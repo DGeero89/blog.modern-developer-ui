@@ -11,14 +11,11 @@
 
     function validateCommentForm(input){
 
-      var value = input.value;
+      var value = input.value.trim();
 
-        console.log(value);
-
-      if (!validator.isEmpty(value) && validator.lessWordsThan(value, 10)) {
+      if (!validator.isEmpty(value) && validator.lessWordsThan(value, 1000)) {
         input.setCustomValidity("");
-      }
-      else {
+      } else {
           input.setCustomValidity("Please enter a valid comment, no longer than 1000 words.");
       }
 
@@ -47,6 +44,8 @@
 
     commentForm.addEventListener('submit', function(e){
       e.preventDefault();
+      console.log(e.target);
+      blog.addComment(e);
     });
 
     emailForm.addEventListener("submit", function(e) {
