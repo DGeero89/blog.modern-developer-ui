@@ -19,25 +19,110 @@
 			this.articleList.push(article);
 		},
 
-		// Add comment to article and append comment to DOM
-		addComment: function(e) {
-			var mainContent = document.getElementById('main-content'),
-					articleTitle = mainContent.querySelector('.blog-title').textContent,
-					comment = e.target.querySelector('textarea'),
-					user = "John Doe";
+		// Create new comment form for reply
+		newCommentForm: function(e) {
+			var parent = e.target.parentNode,
+					replySection = parent.querySelector('.make-reply'),
+					commentsSection = document.querySelector('.article-comments'),
+					makeNewComment,
+					newCommentForm;
 
+			// Template literal HTML for new comment form
+			makeNewComment = 
+			`
+				<form method="" class="post-comment">
+					<textarea name="comment" placeholder="Your Comment" class="comment-field" required></textarea>
+					<input type="submit" class="button form-control submit" value="post">
+				</form>
+			`;
+
+			// Add form to page
+			replySection.innerHTML = makeNewComment;
+
+			// Add event listeners to new form field and submit button
+			parent.querySelector('.comment-field').addEventListener('keyup', function(){
+				validateCommentForm(this);
+			})
+			parent.querySelector('.post-comment').addEventListener('submit', function(e){
+				e.preventDefault();
+
+				// Create comment
+      	blog.createComment(e);
+			});
+
+		},
+
+		// Add comment to article and append comment to DOM
+		createComment: function(e) {
+			var articleTitle = document.querySelector('.blog-title').textContent,
+					comment = e.target.querySelector('textarea'),
+					commentParent = comment.parentNode.parentNode,
+					user = "John Doe";
+			
 			// Loop over article list. Find matching article, create Comment Object and push to comment array
 			for(var i = 0; i < this.articleList.length; i++){
 				if( utilities.find(this.articleList[i], articleTitle)){
 					var newComment = new Comment(this.articleList[i].comments.length+1, user, comment.value);
 					this.articleList[i].__comments = newComment;
-					appendComment(newComment);
+					this.appendComment(newComment, commentParent);
 				}
 			}
 
 			// Reset comment value
 			comment.value = "";
+		},
+
+		// Append comment to the DOM
+		appendComment: function(comment, commentParent) {
+
+		var commentsSection = document.querySelector('.article-comments'),
+				newComment = document.createElement('div'),
+				replySection = commentParent.querySelector('.make-reply'),
+				commentHTML;
+		
+		// Template literal HTML for new comment
+		commentHTML = 
+		`
+			<div class="comment-avatar">
+				<img class="avatar" src="${comment.userAvatar}">
+			</div>
+	    <p class="avatar-name"><strong>${comment.userId}</strong></p>
+	    <p class="avatar-timestamp">${comment.__timeStamp}</p>
+	    <p class="avatar-comments">"${comment.content}"</p>
+	    <p class="make-reply">Reply</p>
+	    <p class="comment-replies"></p>
+    `;
+
+    // Set the HTML for the new comment
+    newComment.innerHTML = commentHTML;
+
+    /* 
+    * 
+    * Check the comment wrapper parent class
+    * if the parent is the main comment section append as a new comment
+    * else append as a new reply below the original comment
+    *
+    */
+
+    if(commentParent.getAttribute('class') === 'comments-section'){
+    	newComment.classList.add('new-comment');
+			commentsSection.appendChild(newComment);
+		} else {
+			//commentParent.removeChild(commentParent.firstElementChild)
+			commentParent.parentNode.querySelector('.make-reply').innerHTML = "Reply";
+			newComment.classList.add('new-reply');
+			commentParent.parentNode.querySelector('.comment-replies').appendChild(newComment);
 		}
+    
+    // Add the even listener to the new reply button
+    newComment.querySelector('.make-reply').addEventListener('click', function(e){
+    	if(this.textContent === "Reply"){
+    		blog.newCommentForm(e); 
+    	}
+    })
+		}
+	
+
 	},
 
 	// Helper object
@@ -49,10 +134,6 @@
 			differenceInMils = (today - datePosted);
 			daysAgo = Math.round(differenceInMils/oneDay);
 
-			console.log(datePosted);
-			console.log(today);
-			console.log(differenceInMils);
-			console.log(daysAgo);
 			if(daysAgo > 1){
 				return daysAgo + " days ago";
 			} else if(daysAgo == 1){
@@ -175,26 +256,6 @@
 		mainContent.querySelector('.post-date').innerHTML = blog.articleList[0].__timeStamp;
 	}
 
-	// Function to append new comment ot the DOm
-	function appendComment(comment) {
-
-		var commentsSection = document.querySelector('.article-comments'),
-				newCommentHTML;
-		console.log(commentsSection);
-		newCommentHTML = `
-			<div class="user-comment">
-				<div class="comment-avatar">
-					<img class="avatar" src="${comment.userAvatar}">
-				</div>
-	      <p class="avatar-name"><strong>${comment.userId}</strong></p>
-	      <p class="avatar-timestamp">${comment.__timeStamp}</p>
-	      <p class="avatar-comments">"${comment.content}"</p>
-	      <p class="comment-reply">Reply</p>
-      </div>
-      `;
-
-      commentsSection.innerHTML += newCommentHTML;
-	}
 
 	blogInit();
 	window.blog = blog;

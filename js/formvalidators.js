@@ -1,4 +1,4 @@
-(function(){
+
 /**
  * Created by hherb on 1/21/2017.
  */
@@ -13,7 +13,7 @@
 
       var value = input.value.trim();
 
-      if (!validator.isEmpty(value) && validator.lessWordsThan(value, 1000)) {
+      if (!validator.isEmpty(value) && validator.isBetween(value, 1, 1000)) {
         input.setCustomValidity("");
       } else {
           input.setCustomValidity("Please enter a valid comment, no longer than 1000 words.");
@@ -44,14 +44,13 @@
 
     commentForm.addEventListener('submit', function(e){
       e.preventDefault();
-      console.log(e.target);
-      blog.addComment(e);
+      //console.log(e.target);
+      blog.createComment(e);
     });
+
+
 
     emailForm.addEventListener("submit", function(e) {
       e.preventDefault();
       console.log(e.target.querySelector('input').value);
     });
-
-
- })();
