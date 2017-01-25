@@ -1,7 +1,6 @@
-
 /**
- * Created by hherb on 1/21/2017.
- */
+* Created by hherb on 1/21/2017.
+*/
  
     var commentForm = document.getElementById("comment-form"),
         commentField = commentForm.querySelector("#comment-field"),
@@ -13,7 +12,7 @@
 
       var value = input.value.trim();
 
-      if (!validator.isEmpty(value) && validator.isBetween(value, 1, 1000)) {
+      if (!validator.isEmpty(value) && validator.isBetween(value, 2, 1000)) {
         input.setCustomValidity("");
       } else {
           input.setCustomValidity("Please enter a valid comment, no longer than 1000 words.");
@@ -54,3 +53,4 @@
       e.preventDefault();
       console.log(e.target.querySelector('input').value);
     });
+
