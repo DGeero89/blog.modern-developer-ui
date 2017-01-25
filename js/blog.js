@@ -5,13 +5,22 @@
 	* Blog data object
 	*
 	*/
+
 	var blog = {
 		siteTitle: 'Blog.Bov-Academy',
 		articleList: [],
-
+		userList: [],
 		// Return articles
 		get articles() {
 			return this.articleList;
+		},
+
+		get users(){
+			return this.userList;
+		},
+
+		set users(user){
+			this.userList.push(user);
 		},
 
 		// Add new article to article list
@@ -119,9 +128,15 @@
     	if(this.textContent === "Reply"){
     		blog.newCommentForm(e); 
     	}
-    })
+    	})
+		},
+
+		createUser: function(firstName, lastName, email){
+			
+			this.users = new User(firstName, lastName, email);
+
 		}
-	
+		
 
 	},
 
@@ -182,6 +197,13 @@
 		this.userId = userId || "Bob";
 		this.userAvatar = userAvatar || "https://s7.postimg.org/yxe2oau3f/stupid.jpg";
 		this.content = content || "Comment";
+	}
+
+	function User(firstName, lastName, email) {
+		this.userId = blog.userList.length + 1;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
 	}
 
 	// Implement prototypical inheritance

@@ -11,23 +11,31 @@
 
 	validator.isEmailAddress = function(input){
         
-        //Check if input is string, has minimum # of characters, contains an "@" and contains no spaces
-		if(typeof input !== 'string' || input.length < 5 || input.indexOf("@") === -1 || input.indexOf(" ") !== -1 ) {
+     //Check if input is string, has minimum # of characters, contains an "@" and contains no spaces
+		if(typeof input !== 'string' ) {
 			throw "Please enter a valid input.";
 		}
 
-		//Split Input
 		var isEmail = false,
-			arr = input.split("@"),
-            local = arr[0],
+				arr,
+        local,
+				domain;
+
+		if(input.length < 5 || input.indexOf("@") === -1 || input.indexOf(" ") !== -1 ){
+			return isEmail;
+		} else {
+			//Split Input
+			arr = input.split("@");
+			local = arr[0];
 			domain = arr[1].split(".");
-      
-        //Check if arr.length is 2 to make sure only 1 "@" symbol, 
-        //if domain length is 2 so only 1 "." 
-        //and there is at least one character after the "@"  and before the "."
-      
-		if (arr.length === 2 && domain.length === 2 && domain[0].length > 0){
-			isEmail = true;
+
+			//Check if arr.length is 2 to make sure only 1 "@" symbol, 
+      //if domain length is 2 so only 1 "." 
+      //and there is at least one character after the "@"  and before the "."
+      if (arr.length === 2 && domain.length === 2 && domain[0].length > 0){
+				isEmail = true;
+			}
+
 		}
         
 		return isEmail;

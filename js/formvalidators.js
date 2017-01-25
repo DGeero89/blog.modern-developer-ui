@@ -1,6 +1,7 @@
-/**
-* Created by hherb on 1/21/2017.
-*/
+
+  /**
+ * Created by hherb on 1/21/2017.
+ */
  
     var commentForm = document.getElementById("comment-form"),
         commentField = commentForm.querySelector("#comment-field"),
@@ -12,7 +13,7 @@
 
       var value = input.value.trim();
 
-      if (!validator.isEmpty(value) && validator.isBetween(value, 2, 1000)) {
+      if (validator.isBetween(value, 2, 1000)) {
         input.setCustomValidity("");
       } else {
           input.setCustomValidity("Please enter a valid comment, no longer than 1000 words.");
@@ -33,8 +34,18 @@
       }
     }
 
-    emailField.addEventListener("keyup", function() {
+    emailField.addEventListener("change", function() {
       validateEmailForm(this);
+    });
+
+    emailForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      var email = e.target.querySelector('#email');
+
+      blog.createUser("First", "Last", email.value);
+      email.value = "";
+      console.log(blog.users);
+
     });
 
     commentField.addEventListener("keyup", function(){
@@ -45,12 +56,5 @@
       e.preventDefault();
       //console.log(e.target);
       blog.createComment(e);
-    });
-
-
-
-    emailForm.addEventListener("submit", function(e) {
-      e.preventDefault();
-      console.log(e.target.querySelector('input').value);
     });
 
