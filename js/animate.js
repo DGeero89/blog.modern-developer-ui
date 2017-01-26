@@ -4,7 +4,8 @@
 
 
 $(document).ready(function(){
-    $("#load-more-link").click(function(){
+    $("#load-more-link").click(function(e){
+        e.preventDefault();
         var dots = $("#dots");
         dots.animate({opacity: "10"}, 0);
         dots.animate({opacity: "0"}, 175);
