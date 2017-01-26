@@ -113,6 +113,7 @@ h2 {
 	width: 96%;
 	max-width: 1400px;
 	margin: 0 auto;
+	position: relative;
 }
 
 #main-content {
@@ -609,14 +610,13 @@ div.button-logo-footer{
 
 .loading-dots {
 	color: white;
-	position: relative;
 }
 
 #dots{
-	position: absolute;
 	color: #418fda;
-	margin-top: 20px;
-	right: 455px;
+	margin-top: -61px;
+	z-index: 1000;
+	right: 147px;
 	font-size: 26px;
-	opacity: 10;
+	opacity: 0;
 }

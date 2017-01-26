@@ -110,6 +110,7 @@ h2 {
 }
 
 .pagewidth {
+	position: relative;
 	width: 96%;
 	max-width: 1400px;
 	margin: 0 auto;
