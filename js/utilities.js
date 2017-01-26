@@ -220,7 +220,6 @@
 		for(i = 0; i < keysLength; i++){
 			
 			if(object[keys[i]] === search){
-				console.log(object[keys[i]] === search)
 				found = true;
 			}
 		}

@@ -41,11 +41,11 @@ h2 {
 }
 
 .clearfix:after {
-   content: " "; /* Older browser do not support empty content */
-   visibility: hidden;
-   display: block;
-   height: 0;
-   clear: both;
+	content: " "; /* Older browser do not support empty content */
+	visibility: hidden;
+	display: block;
+	height: 0;
+	clear: both;
 }
 
 .header-wrap {
@@ -71,7 +71,7 @@ h2 {
 
 .site-title {
 	float: left;
-    margin: 27px 0px 0px 10px;
+	margin: 27px 0px 0px 10px;
 }
 
 .search-wrap {
@@ -85,13 +85,13 @@ h2 {
 .search-wrap input {
 	background: #4d4d4d;
 	border: none;
-    font-size: .8em;
-    padding: 8px;
-    width: 240px;
-    border-radius: 2px;
-    float: left;
-    height: 32px;
-    color: #fff;
+	font-size: .8em;
+	padding: 8px;
+	width: 240px;
+	border-radius: 2px;
+	float: left;
+	height: 32px;
+	color: #fff;
 }
 
 .search-wrap span {
@@ -103,10 +103,10 @@ h2 {
 
 .search-wrap i {
 	padding: 7px 8px;
-    height: 32px;
-    width: 32px;
-    line-height: 1;
-    font-size: 1.1em;
+	height: 32px;
+	width: 32px;
+	line-height: 1;
+	font-size: 1.1em;
 }
 
 .pagewidth {
@@ -119,10 +119,10 @@ h2 {
 	padding: 50px 0;
 	min-height: 100vh;
 	font-family: 'Roboto', sans-serif;
- 	max-width: 1280px;
+	max-width: 1280px;
 }
 
-#main { 
+#main {
 	width: 70%;
 	display: block;
 	float: left;
@@ -133,7 +133,7 @@ h2 {
 	background: #fff;
 }
 
-#sidebar { 
+#sidebar {
 	display: block;
 	width: 28%;
 	float:left;
@@ -176,9 +176,9 @@ h2 {
 
 .load-more {
 	text-align: center;
-    text-transform: uppercase;
-    font-size: .7em;
-    margin: 10px 0;
+	text-transform: uppercase;
+	font-size: .7em;
+	margin: 10px 0;
 }
 
 .load-more a {
@@ -195,17 +195,17 @@ h2 {
 }
 
 .tabs label {
-	background: #353334; 
-	padding: 14px; 
+	background: #353334;
+	padding: 14px;
 	display: inline-block;
-	border: 1px solid #353334; 
+	border: 1px solid #353334;
 	border-radius: 4px 4px 0 0;
-	position: relative; 
+	position: relative;
 	color: #4e95e5;
 }
 
 .code {
-  margin: 25px 0 30px;
+	margin: 25px 0 30px;
 }
 
 .code .content {
@@ -227,14 +227,14 @@ h2 {
 }
 
 .content {
-	background: #272526; 
+	background: #272526;
 	color: #373737;
 	width: 100%;
 	margin: 0 0 10px;
 }
 
 .content > div {
-	display: none; 
+	display: none;
 	padding: 40px 25px 5px;
 }
 
@@ -242,7 +242,7 @@ h2 {
 #tab2:checked ~ .content #upcoming-articles,
 #javascript:checked ~ .content .code-block,
 #result:checked ~ .content .result-block{
-     display: block;
+	display: block;
 }
 
 .article-title {
@@ -255,7 +255,7 @@ h2 {
 	color: #5d5b5c;
 	font-size: .8em;
 	padding: 0 0 15px;
-    border-bottom: 2px solid #353334;
+	border-bottom: 2px solid #353334;
 }
 
 .date:nth-last-of-type(1){
@@ -280,8 +280,8 @@ h2 {
 
 .blog-title {
 	font-size: 2.5em;
-    font-weight: 300;
-    padding-bottom: 20px;
+	font-weight: 300;
+	padding-bottom: 20px;
 }
 
 .blog-header {
@@ -313,7 +313,7 @@ h2 {
 	width: 100%;
 }
 
-.blog-content { 
+.blog-content {
 	padding: 25px 70px 10px 70px;
 }
 
@@ -361,35 +361,35 @@ h2 {
 
 .related-articles li:after {
 	content: "";
-    height: 100%;
-    width: 1px;
-    border: solid 1px #c6c6c6;
-    position: absolute;
-    left: -48px;
-    top: 0px;
-    bottom: 0;
+	height: 100%;
+	width: 1px;
+	border: solid 1px #c6c6c6;
+	position: absolute;
+	left: -48px;
+	top: 0px;
+	bottom: 0;
 }
 
 .related-articles li::before {
 	width: 26px;
-    height: 26px;
-    font-size: 12px;
-    line-height: 19px;
-    transition: 0.5s ease;
-    -webkit-transition: 0.5s ease;
-    -moz-transition: 0.5s ease;
-    background: #fff;
-    text-align: center;
-    content: counter(li, decimal);
-    counter-increment: li;
-    position: absolute;
-    border-radius: 50%;
-    left: -60px;
-    top: 10px;
-    padding: 2px;
-    border: 2px solid #b9b9b9;
-    text-align: center;
-    z-index: 4;
+	height: 26px;
+	font-size: 12px;
+	line-height: 19px;
+	transition: 0.5s ease;
+	-webkit-transition: 0.5s ease;
+	-moz-transition: 0.5s ease;
+	background: #fff;
+	text-align: center;
+	content: counter(li, decimal);
+	counter-increment: li;
+	position: absolute;
+	border-radius: 50%;
+	left: -60px;
+	top: 10px;
+	padding: 2px;
+	border: 2px solid #b9b9b9;
+	text-align: center;
+	z-index: 4;
 }
 
 .related-articles li a:hover {
@@ -400,18 +400,18 @@ h2 {
 .related-articles li:hover::before {
 	border: 2px solid #986ce5;
 	width: 32px;
-    height: 32px;
-    padding: 4px;
-    left: -65px;
+	height: 32px;
+	padding: 4px;
+	left: -65px;
 }
 
 .related-articles li:active::before {
 	background: #926ae7;
 	color: #edeafb;
 	width: 26px;
-    height: 26px;
-    left: -60px;
-    padding: 2px;
+	height: 26px;
+	left: -60px;
+	padding: 2px;
 }
 
 /***** Code Blocks *****/
@@ -449,15 +449,15 @@ h2 {
 	text-transform: capitalize;
 	display: inline-block;
 	cursor: pointer;
-  	line-height: 1.618em;
-  	font-size: 1em;
-  	background: #fff;
-  	color: #333;
-  	border-radius: 3px;
-    -webkit-transition: all .1s linear;
-    -moz-transition: all .1s linear;
-    -o-transition: all .1s linear;
-    transition: all .1s linear;
+	line-height: 1.618em;
+	font-size: 1em;
+	background: #fff;
+	color: #333;
+	border-radius: 3px;
+	-webkit-transition: all .1s linear;
+	-moz-transition: all .1s linear;
+	-o-transition: all .1s linear;
+	transition: all .1s linear;
 }
 
 .button.submit {
@@ -564,45 +564,59 @@ div.button-logo-footer{
 
 .comments-section .submit {
 	float: none;
-  	height: 35px;
-  	width: 164px;
-  	height: 35px;
- 	width: 164px;
+	height: 35px;
+	width: 164px;
+	height: 35px;
+	width: 164px;
 }
 
 .avatar {
-  position: relative;
-  margin-top: 100px;
+	position: relative;
+	margin-top: 100px;
 }
 
 .avatar-name {
-  margin-left: 120px;
-  margin-top: -95px;
-  color: #f1f1f1;
-  font-family: 'Roboto';
+	margin-left: 120px;
+	margin-top: -95px;
+	color: #f1f1f1;
+	font-family: 'Roboto';
 }
 
 .avatar-timestamp{
-  margin-left: 210px;
-  margin-top: -15px;
-  font-family: 'Roboto';
-  color: #828081;
-  font-size: 0.9em;
+	margin-left: 210px;
+	margin-top: -15px;
+	font-family: 'Roboto';
+	color: #828081;
+	font-size: 0.9em;
 }
 
 .avatar-comments {
-  margin-left: 120px;
-  margin-top: 20px;
-  width: 640px;
-  font-family: 'Roboto';
-  line-height: 1.4em;
-  font-size: 0.9em;
-  color: #ababab;
+	margin-left: 120px;
+	margin-top: 20px;
+	width: 640px;
+	font-family: 'Roboto';
+	line-height: 1.4em;
+	font-size: 0.9em;
+	color: #ababab;
 }
 
 .comment-reply {
-  margin-left: 120px;
-  margin-top: 20px;
-  color: #e674c9;
-  font-size: 0.8em;
+	margin-left: 120px;
+	margin-top: 20px;
+	color: #e674c9;
+	font-size: 0.8em;
+}
+
+.loading-dots {
+	color: white;
+	position: relative;
+}
+
+#dots{
+	position: absolute;
+	color: #418fda;
+	margin-top: 20px;
+	right: 455px;
+	font-size: 26px;
+	opacity: 10;
 }
