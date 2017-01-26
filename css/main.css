@@ -601,11 +601,16 @@ div.button-logo-footer{
 	color: #ababab;
 }
 
-.comment-reply {
+.make-reply {
+  margin-left: 120px;
+  margin-top: 20px;
+  color: #e674c9;
+  font-size: 0.8em;
+  cursor: pointer;
+}
+
+.article-comments > .new-comment > .comment-replies > .new-reply {
 	margin-left: 120px;
-	margin-top: 20px;
-	color: #e674c9;
-	font-size: 0.8em;
 }
 
 .loading-dots {
